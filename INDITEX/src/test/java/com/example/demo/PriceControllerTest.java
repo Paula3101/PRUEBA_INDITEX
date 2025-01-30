@@ -16,13 +16,13 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 
 @SpringBootTest(classes = PricingApplication.class)
 @AutoConfigureMockMvc
-public class PriceControllerTest {
+class PriceControllerTest {
 
 	 @Autowired
 	    private MockMvc mockMvc;
 	    
 	    @Test
-	    public void test1() throws Exception {
+	    void test1() throws Exception {
 
 	    	 MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/prices")
 	    			 	.param("brandId", "1")
@@ -38,7 +38,7 @@ public class PriceControllerTest {
 	    }
 	    
 	    @Test
-	    public void test2() throws Exception {
+	    void test2() throws Exception {
 
 	    	 MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/prices")
 	    			 	.param("brandId", "1")
@@ -54,7 +54,7 @@ public class PriceControllerTest {
 	    }
 	    
 	    @Test
-	    public void test3() throws Exception {
+	    void test3() throws Exception {
 
 	    	 MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/prices")
 	    			 	.param("brandId", "1")
@@ -70,7 +70,7 @@ public class PriceControllerTest {
 	    }
 	    
 	    @Test
-	    public void test4() throws Exception {
+	    void test4() throws Exception {
 
 	    	 MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/prices")
 	    			 	.param("brandId", "1")
@@ -86,7 +86,7 @@ public class PriceControllerTest {
 	    }
 	    
 	    @Test
-	    public void test5() throws Exception {
+	    void test5() throws Exception {
 
 	    	 MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/prices")
 	    			 	.param("brandId", "1")
@@ -103,7 +103,7 @@ public class PriceControllerTest {
 	    
 	    //identificador de cadena no valido
 	    @Test
-	    public void test6() throws Exception {
+	    void test6() throws Exception {
 
 	    	 MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/prices")
 	    			 	.param("brandId", "5")
@@ -120,7 +120,7 @@ public class PriceControllerTest {
 
 	    //Fecha fuera de rango
 	    @Test
-	    public void test7() throws Exception {
+	    void test7() throws Exception {
 
 	    	 MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/prices")
 	    			 	.param("brandId", "1")
@@ -137,7 +137,7 @@ public class PriceControllerTest {
 	    
 	    //El identificador del peoductono existe
 	    @Test
-	    public void test8() throws Exception {
+	    void test8() throws Exception {
 
 	    	 MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/prices")
 	    			 	.param("brandId", "1")
@@ -154,7 +154,7 @@ public class PriceControllerTest {
 	    
 	    //Añadimos rango de prioridad y coinciden en 3 rangos de fechas
 	    @Test
-	    public void test9() throws Exception {
+	    void test9() throws Exception {
 
 	    	 MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/prices")
 	    			 	.param("brandId", "1")
@@ -171,7 +171,7 @@ public class PriceControllerTest {
 	    
 	  //Añadimos identificador de brand pero no esta dentro de rango
 	    @Test
-	    public void test10() throws Exception {
+	    void test10() throws Exception {
 
 	    	 MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/prices")
 	    			 	.param("brandId", "2")
@@ -188,7 +188,7 @@ public class PriceControllerTest {
 	    
 	  //Añadimos identificador de brand y esta dentro de rango
 	    @Test
-	    public void test11() throws Exception {
+	    void test11() throws Exception {
 
 	    	 MvcResult result = mockMvc.perform(MockMvcRequestBuilders.get("/prices")
 	    			 	.param("brandId", "2")
@@ -205,7 +205,7 @@ public class PriceControllerTest {
 	    
 	  //Fecha erronea
 	    @Test
-	    public void test12() throws Exception {
+	    void test12() throws Exception {
 
 	    	  mockMvc.perform(MockMvcRequestBuilders.get("/prices")
 	    			 	.param("brandId", "2")

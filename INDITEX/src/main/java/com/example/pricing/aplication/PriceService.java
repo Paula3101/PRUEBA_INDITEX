@@ -6,7 +6,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.example.pricing.domain.model.Brand;
@@ -19,11 +19,17 @@ import jakarta.persistence.EntityNotFoundException;
 @Service
 public class PriceService {
 
-	@Autowired
 	PriceRepository pricesRepository;
-
-	@Autowired
 	BrandRepository brandRepository;
+	
+	Brand brand = null;
+	Logger logger = null;
+
+	
+	public PriceService(PriceRepository pricesRepository, BrandRepository brandRepository) {
+        this.pricesRepository = pricesRepository;
+        this.brandRepository = brandRepository;
+    }
 
 	public Price getApplicablePrice(Long brandId, Long productId, String applicationDate) {
 
@@ -34,19 +40,19 @@ public class PriceService {
 	        date = LocalDateTime.parse(applicationDate, formatter);
 	    } catch (DateTimeParseException e) {
 	        String message = "Fecha no válida. El formato esperado es 'yyyy-MM-dd HH:mm:ss'.";
-	        System.out.println(message); 
+	        logger.info(message); 
             throw new IllegalArgumentException(message);
 	    }
 
 		Timestamp applicationDateTime = Timestamp.valueOf(date);
-
-		//Si no existe ningun brand con el id proporcionado devolvemos una excepcion
-		Brand brand = brandRepository.findById(brandId)
+		
+		brand = brandRepository.findById(brandId)
 				.orElseThrow(() -> {
 					String message = "Brand con ID " + brandId + " no encontrada";
-	                System.out.println(message);
+					logger.info(message);
 	                return new EntityNotFoundException(message);
 				});
+
 
 		//Si no existe ningun registro con los datos proporcionados devolvemos una excepcion 
 		Optional<Price> priceEntityOptional = pricesRepository.findPrueba(brandId, productId, applicationDateTime);
@@ -54,7 +60,7 @@ public class PriceService {
 		return priceEntityOptional
 				.orElseThrow(() -> {
 					String message = "No se encontró ningun articulo";
-	                System.out.println(message);
+	                logger.info(message);
 	                return new EntityNotFoundException(message);
 				});
 	}
