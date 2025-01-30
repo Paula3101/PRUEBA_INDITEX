@@ -48,8 +48,8 @@ public class PriceService {
 		
 		brand = brandRepository.findById(brandId)
 				.orElseThrow(() -> {
-					String message = "Brand con ID " + brandId + " no encontrada";
-					logger.info(message);
+					String message = "Brand con ID " + brandId + " no encontrada.";
+					System.out.println(message);
 	                return new EntityNotFoundException(message);
 				});
 
@@ -60,7 +60,7 @@ public class PriceService {
 		return priceEntityOptional
 				.orElseThrow(() -> {
 					String message = "No se encontró ningun articulo";
-	                logger.info(message);
+					System.out.println(message);
 	                return new EntityNotFoundException(message);
 				});
 	}
