@@ -48,7 +48,7 @@ public class PriceService {
 		
 		brand = brandRepository.findById(brandId)
 				.orElseThrow(() -> {
-					String message = "Brand con ID " + brandId + " no encontrada.";
+					String message = "Brand con ID " + brandId + " no encontrada."; 
 					System.out.println(message);
 	                return new EntityNotFoundException(message);
 				});
