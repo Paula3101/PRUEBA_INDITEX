@@ -110,10 +110,10 @@ Introducimos los datos: brandId, productId y applicationDate. El primero es el i
 En este caso devuelve el siguiente objeto ya que la fecha se encuentra en el rango del primer y ultimo registro, pero muestra el último ya que la prioridad es más alta. 
 ```
 TEST 01 Objeto Price recibido: Price{
-id=6
+id=1
 brandId=1
 productId=35455
-price=31.95
+price=35.5
 currency='EUR'
 }
 ```
@@ -135,13 +135,13 @@ currency='EUR'
 	    	 System.out.println("TEST 02 Objeto Price recibido: " + priceResponse.toString());
 	    }
 ```
-En este caso devuelve el siguiente objeto ya que la fecha se encuentra en el rango del segundo y ultimo registro, pero muestra el último ya que la prioridad es más alta. 
+En este caso devuelve el siguiente objeto ya que la fecha se encuentra en el rango del primer y segundo registro, pero muestra el segundo ya que la prioridad es más alta. 
 ```
-TEST 01 Objeto Price recibido: Price{
-id=6
+TEST 02 Objeto Price recibido: Price{
+id=2
 brandId=1
 productId=35455
-price=31.95
+price=25.45
 currency='EUR'
 }
 ```
@@ -163,6 +163,16 @@ currency='EUR'
 	    	 System.out.println("TEST 03 Objeto Price recibido: " + priceResponse.toString());
 	    }
 ```
+En este caso devuelve el siguiente objeto ya que la fecha se encuentra en el rango del primer registro.
+```
+TEST 03 Objeto Price recibido: Price{
+id=1
+brandId=1
+productId=35455
+price=35.5
+currency='EUR'
+}
+```
 
 **Caso 4**
 ```  @Test
@@ -180,6 +190,16 @@ currency='EUR'
 	    	 
 	    	 System.out.println("TEST 04 Objeto Price recibido: " + priceResponse.toString());
 	    }
+```
+En este caso devuelve el siguiente objeto ya que la fecha se encuentra en el rango del tercer registro.
+```
+TEST 04 Objeto Price recibido: Price{
+id=3
+brandId=1
+productId=35455
+price=30.5
+currency='EUR'
+}
 ```
 
 **Caso 5**
@@ -199,6 +219,16 @@ currency='EUR'
 	    	 System.out.println("TEST 05 Objeto Price recibido: " + priceResponse.toString());
 	    }
 ```
+En este caso devuelve el siguiente objeto ya que la fecha se encuentra en el rango del cuarto registro.
+```
+TEST 05 Objeto Price recibido: Price{
+id=4
+brandId=1
+productId=35455
+price=38.95
+currency='EUR'
+}
+```
 
 **Caso 6**
 ``` @Test
@@ -216,6 +246,10 @@ currency='EUR'
 	    	 
 	    	 System.out.println("TEST 06 Objeto Price recibido: " + priceResponse.toString());
 	    }
+```
+En este caso devuelve el siguiente error ya que ninguno de los id de la tabla Brand coinciden con el intorducido
+```
+Brand con ID 5 no encontrada.
 ```
 
 **Caso 7**
@@ -235,6 +269,10 @@ currency='EUR'
 	    	 System.out.println("TEST 07 Objeto Price recibido: " + priceResponse.toString());
 	    }
 ```
+En este caso devuelve el siguiente mensaje ya que la fecha esta fuera de todos los rangos
+```
+No se encontró ningun articulo
+```
 
 **Caso 8**
 ``` @Test
@@ -252,6 +290,10 @@ currency='EUR'
 	    	 
 	    	 System.out.println("TEST 08 Objeto Price recibido: " + priceResponse.toString());
 	    }
+```
+En este caso devuelve el siguiente mensaje ya que el codigo de producto introducido no existe. 
+```
+No se encontró ningun articulo
 ```
 
 **Caso 9**
@@ -271,6 +313,16 @@ currency='EUR'
 	    	 System.out.println("TEST 09 Objeto Price recibido: " + priceResponse.toString());
 	    }
 ```
+En este caso devuelve el siguiente objeto ya que la fecha se encuentra en el rango del primer registro
+```
+TEST 09 Objeto Price recibido: Price{
+id=1
+brandId=1
+productId=35455
+price=35.5
+currency='EUR'
+}
+```
 
 **Caso 10**
 ``` @Test
@@ -288,6 +340,10 @@ currency='EUR'
 	    	 
 	    	 System.out.println("TEST 10 Objeto Price recibido: " + priceResponse.toString());
 	    }
+```
+En este caso devuelve un mensaje ya que aunque hemos añadido identificador de brand, no esta dentro de rango de fechas
+```
+No se encontró ningun articulo
 ```
 
 **Caso 11**
@@ -307,6 +363,16 @@ currency='EUR'
 	    	 System.out.println("TEST 11 Objeto Price recibido: " + priceResponse.toString());
 	    }
 ```
+En este caso devuelve el siguiente objeto ya que el unico registro que hay cambiando el brandId, productId, es el siguiente
+```
+TEST 11 Objeto Price recibido: Price{
+id=5
+brandId=2
+productId=35458
+price=25.5
+currency='EUR'
+}
+```
 
 **Caso 12**
 ``` @Test
@@ -319,6 +385,10 @@ currency='EUR'
 		                .andExpect(status().isOk()).andReturn();
 
 	    }
+```
+En este caso devuelve un error ya que el formato de la fecha no es válido
+```
+Fecha no válida. El formato esperado es 'yyyy-MM-dd HH:mm:ss'.
 ```
 
 
